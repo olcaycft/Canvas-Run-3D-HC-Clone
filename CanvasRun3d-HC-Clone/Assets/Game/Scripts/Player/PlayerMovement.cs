@@ -80,20 +80,18 @@ namespace Game.Scripts.Player
         }
         private void SideMovement()
         {
+            //change players sidemovement root's local position, not a world.
             sideMovementTarget += inputDrag.x * sideMovementSensitivity;
             sideMovementTarget = Mathf.Clamp(sideMovementTarget, playerLeftLimitX, playerRightLimitX);
             var localPos = sideMovementRoot.localPosition;
             localPos.x = Mathf.Lerp(localPos.x, sideMovementTarget, Time.deltaTime * sideMovementLerpSpeed);
             sideMovementRoot.localPosition = localPos;
             
-            
+            //for rotate players rotation for current direction
             var moveDirection = Vector3.forward * 0.5f;
             moveDirection += sideMovementRoot.right * inputDrag.x * sideMovementSensitivity;
-
             moveDirection.Normalize();
-
             var targetRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-
             sideMovementRoot.rotation = Quaternion.Lerp(sideMovementRoot.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         }
 
