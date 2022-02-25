@@ -1,17 +1,17 @@
 using UnityEngine;
 
-namespace Game.Scripts.Player
+namespace Game.Scripts.Unit
 {
-    public class PlayerMovement : MonoBehaviour
+    public class UnitMovement : MonoBehaviour
     {
         private Vector2 inputDrag;
         private Vector2 previousMousePosition;
 
         [SerializeField] private Transform sideMovementRoot;
-        [SerializeField] private Transform playerRightLimit;
-        [SerializeField] private Transform playerLeftLimit;
-        private float playerRightLimitX => playerRightLimit.localPosition.x;
-        private float playerLeftLimitX => playerLeftLimit.localPosition.x;
+        [SerializeField] private Transform unitRightLimit;
+        [SerializeField] private Transform unitLeftLimit;
+        private float playerRightLimitX => unitRightLimit.localPosition.x;
+        private float playerLeftLimitX => unitLeftLimit.localPosition.x;
 
         //private float sideMovementSensitivity => SettingsManager.GameSettings.playerSideMovementSensitivity;
         //private float sideMovementLerpSpeed => SettingsManager.GameSettings.playerSideMovementLerpSpeed;
@@ -88,11 +88,12 @@ namespace Game.Scripts.Player
             sideMovementRoot.localPosition = localPos;
             
             //for rotate players rotation for current direction
-            var moveDirection = Vector3.forward * 0.5f;
+            
+            /*var moveDirection = Vector3.forward * 0.5f;
             moveDirection += sideMovementRoot.right * inputDrag.x * sideMovementSensitivity;
             moveDirection.Normalize();
             var targetRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-            sideMovementRoot.rotation = Quaternion.Lerp(sideMovementRoot.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+            sideMovementRoot.rotation = Quaternion.Lerp(sideMovementRoot.rotation, targetRotation, Time.deltaTime * rotationSpeed);*/
         }
 
         private void ForwardMovement()
