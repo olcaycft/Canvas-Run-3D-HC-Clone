@@ -6,15 +6,14 @@ using UnityEngine;
 
 namespace Game.Scripts.Formation
 {
-    public class FormationController : MonoBehaviour
+    public class FormationLeadersController : MonoBehaviour
     {
         private FormationBase _formation;
         private FormationBase formation => _formation ??= GetComponent<FormationBase>();
 
         [SerializeField] private GameObject unitPrefab;
-        private List<GameObject> spawnedUnits = new List<GameObject>();
-        private List<Vector3> points = new List<Vector3>();
-
+        [SerializeField] private List<GameObject> spawnedUnits = new List<GameObject>();
+        [SerializeField] private List<Vector3> points = new List<Vector3>();
 
         private void Update()
         {
@@ -23,7 +22,7 @@ namespace Game.Scripts.Formation
 
         private void SetFormation()
         {
-            points = formation.Points().ToList();
+            points = formation.LeaderPoints().ToList();
             if (points.Count > spawnedUnits.Count)
             {
                 var newPoints = points.Skip(spawnedUnits.Count);
@@ -39,12 +38,14 @@ namespace Game.Scripts.Formation
                 spawnedUnits[i].transform.position = transform.position + points[i];
             }
         }
-        
+
         private void Spawn(IEnumerable<Vector3> points) //its will be replace with obj pool later
         {
             foreach (var pos in points)
             {
                 var unit = Instantiate(unitPrefab, transform.position + pos, Quaternion.identity, transform);
+                IOnUnitSpawn spawnedUnit = unit.GetComponent<IOnUnitSpawn>();
+                spawnedUnit.OnUnitSpawn();
                 spawnedUnits.Add(unit);
             }
         }
