@@ -21,13 +21,15 @@ namespace Game.Scripts.Unit
         //private float forwardSpeed => SettingsManager.GameSettings.playerForwardSpeed;
         private float sideMovementSensitivity = 10f;
         private float sideMovementLerpSpeed = 5f;
-        private float forwardSpeed = 5f;
+        private float forwardSpeed = 10f;
         private float rotationSpeed = 5f;
 
         private float sideMovementTarget;
 
         /*private bool isGameStart;
         private bool isLevelFinish;*/
+
+        private bool isFinish;
 
         private int tempWidth;
 
@@ -37,11 +39,13 @@ namespace Game.Scripts.Unit
             stackLeftLimitX = stackLeftLimit.localPosition.x;
             tempWidth = StackManager.Instance.GetWidth();
             StackManager.WidthChangedObserver += SetLeftRightLimits;
+            Finish.FinishGameObserver += ChangeFinishState;
         }
 
         private void OnDestroy()
         {
             StackManager.WidthChangedObserver -= SetLeftRightLimits;
+            Finish.FinishGameObserver -= ChangeFinishState;
         }
 
         private Vector2 mousePositionCM
@@ -58,10 +62,10 @@ namespace Game.Scripts.Unit
 
         private void Update()
         {
-            /*if (isLevelFinish)
+            if (isFinish)
             {
                 return;
-            }*/
+            }
             HandleInput();
             SideMovement();
             /*if (!isGameStart)
@@ -118,10 +122,10 @@ namespace Game.Scripts.Unit
             transform.position += Vector3.forward * Time.deltaTime * forwardSpeed;
         }
 
-        /* private void ChangeLevelState()
+         private void ChangeFinishState()
          {
-             isLevelFinish = true;
-         }*/
+             isFinish = true;
+         }
 
         private void SetLeftRightLimits(int width)
         {

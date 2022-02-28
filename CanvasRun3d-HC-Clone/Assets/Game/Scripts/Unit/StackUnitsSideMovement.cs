@@ -1,13 +1,14 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Game.Scripts.Managers;
 using UnityEngine;
 
-namespace Game.Scripts.Formation
+namespace Game.Scripts.Unit
 {
-    public class FormationMovement : MonoBehaviour,IOnUnitSpawn
+    public class StackUnitsSideMovement : MonoBehaviour, IOnUnitSpawn
     {
+        
+        
         [SerializeField] private GameObject stackObjPrefab;
         [SerializeField] private Transform parent;
 
@@ -16,28 +17,32 @@ namespace Game.Scripts.Formation
         private List<Vector3> PositionHistory = new List<Vector3>();
 
         //private int gap =>Mathf.RoundToInt(parent.GetComponent<Renderer>().bounds.size.z)+1;
-        private int gap =15;
+        private int gap = 5;
         private int length;
+
+        private bool isFinish;
 
         private void OnEnable()
         {
             StackManager.LengthChangedObserver += ChangeLength;
+            Finish.FinishGameObserver += ChangeFinishState;
         }
 
         private void OnDestroy()
         {
             StackManager.LengthChangedObserver -= ChangeLength;
+            Finish.FinishGameObserver -= ChangeFinishState;
         }
 
         private void Update()
         {
+            if (isFinish) return;
             StackCount();
             StackMovement();
         }
 
         private void StackCount()
         {
-            
             if (length > StackParts.Count)
             {
                 for (int i = 0; i < length; i++)
@@ -62,7 +67,7 @@ namespace Game.Scripts.Formation
             var index = 1;
             foreach (var stackObj in StackParts)
             {
-                var point = PositionHistory[Mathf.Min(index*gap, PositionHistory.Count - 1)];
+                var point = PositionHistory[Mathf.Min(index * gap, PositionHistory.Count - 1)];
                 //point.z = PositionHistory[Mathf.Min(index, PositionHistory.Count - 1)].z * 0.3f;
                 stackObj.transform.position = Vector3.Lerp(stackObj.transform.position, point, 0.4f);
                 //stackObj.transform.position = point;
@@ -89,6 +94,11 @@ namespace Game.Scripts.Formation
         public void OnUnitSpawn()
         {
             length = StackManager.Instance.GetLength();
+        }
+
+        private void ChangeFinishState()
+        {
+            isFinish = true;
         }
     }
 }
