@@ -57,7 +57,6 @@ namespace Game.Scripts.Managers
         {
             var randomLengthInterval = Random.Range(1, length - 1);
             newLength = Random.value < 0.25f ? -randomLengthInterval : +randomLengthInterval;
-            Debug.Log(newLength);
             ChangeLengthTextObserver?.Invoke(newLength, width);
         }
 
