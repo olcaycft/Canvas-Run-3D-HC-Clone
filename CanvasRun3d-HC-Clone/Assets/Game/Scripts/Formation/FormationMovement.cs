@@ -64,7 +64,7 @@ namespace Game.Scripts.Formation
             {
                 var point = PositionHistory[Mathf.Min(index*gap, PositionHistory.Count - 1)];
                 //point.z = PositionHistory[Mathf.Min(index, PositionHistory.Count - 1)].z * 0.3f;
-                stackObj.transform.position = Vector3.Lerp(stackObj.transform.position, point, 0.5f);
+                stackObj.transform.position = Vector3.Lerp(stackObj.transform.position, point, 0.4f);
                 //stackObj.transform.position = point;
                 index++;
             }
@@ -88,7 +88,7 @@ namespace Game.Scripts.Formation
 
         public void OnUnitSpawn()
         {
-            length = GameManager.Instance.GetLength();
+            length = StackManager.Instance.GetLength();
         }
     }
 }
