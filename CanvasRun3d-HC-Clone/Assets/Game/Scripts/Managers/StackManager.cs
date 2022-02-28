@@ -17,6 +17,8 @@ namespace Game.Scripts.Managers
 
         public static event Action<int, int> ChangeLengthTextObserver;
         public static event Action<int, int> ChangeWidthTextObserver;
+        public static event Action<int, int> ChangeUnitCountTextObserver;
+
 
         private void Awake()
         {
@@ -25,7 +27,7 @@ namespace Game.Scripts.Managers
 
             LengthChangedObserver?.Invoke(tempLength);
             WidthChangedObserver?.Invoke(tempWidth);
-
+            ChangeUnitCountTextObserver?.Invoke(tempLength, tempWidth);
             CalculateNewLength();
             CalculateNewWidth();
         }
@@ -48,12 +50,13 @@ namespace Game.Scripts.Managers
                 tempWidth = width;
                 WidthChangedObserver?.Invoke(tempWidth);
             }
+            ChangeUnitCountTextObserver?.Invoke(tempLength,tempWidth);
         }
 
         private void CalculateNewLength()
         {
             var randomLengthInterval = Random.Range(1, length - 1);
-            newLength = Random.value < 0.25f ? -randomLengthInterval :+randomLengthInterval;
+            newLength = Random.value < 0.25f ? -randomLengthInterval : +randomLengthInterval;
             Debug.Log(newLength);
             ChangeLengthTextObserver?.Invoke(newLength, width);
         }
@@ -67,7 +70,7 @@ namespace Game.Scripts.Managers
 
         public void SetNewLength()
         {
-                length += newLength;
+            length += newLength;
 
             CalculateNewLength();
             CalculateNewWidth();
@@ -75,7 +78,7 @@ namespace Game.Scripts.Managers
 
         public void SetNewWidth()
         {
-                width += newWidth;
+            width += newWidth;
             CalculateNewLength();
             CalculateNewWidth();
         }
