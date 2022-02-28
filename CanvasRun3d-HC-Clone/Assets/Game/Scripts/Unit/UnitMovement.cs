@@ -1,6 +1,7 @@
 using System;
 using Game.Scripts.Managers;
 using UnityEngine;
+using Game.Scripts.MiniGame;
 
 namespace Game.Scripts.Unit
 {
@@ -40,12 +41,14 @@ namespace Game.Scripts.Unit
             tempWidth = StackManager.Instance.GetWidth();
             StackManager.WidthChangedObserver += SetLeftRightLimits;
             Finish.FinishGameObserver += ChangeFinishState;
+
         }
 
         private void OnDestroy()
         {
             StackManager.WidthChangedObserver -= SetLeftRightLimits;
-            Finish.FinishGameObserver -= ChangeFinishState;
+            //Finish.FinishGameObserver -= ChangeFinishState;
+            Finish.FinishGameObserver += ChangeFinishState;
         }
 
         private Vector2 mousePositionCM

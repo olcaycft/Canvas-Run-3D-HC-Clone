@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Game.Scripts.Managers;
 using UnityEngine;
+using Game.Scripts.MiniGame;
 
 namespace Game.Scripts.Unit
 {
@@ -26,6 +27,7 @@ namespace Game.Scripts.Unit
         {
             StackManager.LengthChangedObserver += ChangeLength;
             Finish.FinishGameObserver += ChangeFinishState;
+            
         }
 
         private void OnDestroy()
