@@ -26,18 +26,20 @@ public class UnitRigidBody : MonoBehaviour
 
     private void ChangeRigidBody()
     {
-        var rot = transform.rotation;
+        /*var rot = transform.rotation;
         rot.y = Random.Range(0, 180);
-        transform.rotation = rot;
+        transform.rotation = rot;*/
         rigidBody.isKinematic = false;
         rigidBody.useGravity = true;
-        rigidBody.angularDrag = 0.05f;
+        rigidBody.angularDrag = 0.01f;
     }
 
     private void AddImpulseForce()
     {
         ChangeRigidBody();
-        rigidBody.AddForce (Vector3.forward*Random.Range(10,30),ForceMode.Impulse);
+        transform.rotation = Quaternion.Euler(Random.Range(-90, 90), Random.Range(0, -90),0f);
+        //transform.eulerAngles = new Vector3(Random.Range(-90, 90), Random.Range(0, -90));
+        rigidBody.AddForce (Vector3.forward*Random.Range(5,10),ForceMode.Impulse);
     }
 
     private void OnTriggerEnter(Collider other)

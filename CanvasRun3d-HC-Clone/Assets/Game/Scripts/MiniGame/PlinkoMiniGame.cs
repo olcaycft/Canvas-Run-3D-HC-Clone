@@ -33,7 +33,7 @@ namespace Game.Scripts.MiniGame
             rot = Quaternion.identity;
             pos.x = 0f;
             pos.z += 10f;
-            pos.y += 10f;
+            pos.y += 15f;
             rot = Quaternion.Euler(90f, 0f, 0f);
             changePos = true;
             Invoke(nameof(ChangePosState), 2f);
