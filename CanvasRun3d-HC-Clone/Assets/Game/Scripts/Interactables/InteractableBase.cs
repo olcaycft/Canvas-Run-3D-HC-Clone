@@ -10,13 +10,14 @@ namespace Game.Scripts.Interactables
 
         protected virtual void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.CompareTag("Player"))
+            /*if (other.gameObject.CompareTag("Player"))
             {
-                DoAction();
+                DoPlayerAction();
             }
+            */
         }
 
-        protected virtual void DoAction()
+        protected virtual void DoPlayerAction()
         {
             InteractableManager.Instance.SetInteractable(baseInteractableType);
         }

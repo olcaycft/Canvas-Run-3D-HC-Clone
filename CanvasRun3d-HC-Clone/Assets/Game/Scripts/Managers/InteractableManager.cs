@@ -16,6 +16,19 @@ namespace Game.Scripts.Managers
                     StackManager.Instance.SetNewWidth();
                     break;
             }
+
+            switch (state)
+            {
+                case InteractableType.PlinkoX1:
+                    GameManager.Instance.IncreaseGold(1);
+                    break;
+                case InteractableType.PlinkoX2:
+                    GameManager.Instance.IncreaseGold(2);
+                    break;
+                case InteractableType.PlinkoX5:
+                    GameManager.Instance.IncreaseGold(5);
+                    break;
+            }
         }
     }
 
@@ -23,6 +36,9 @@ namespace Game.Scripts.Managers
     {
         Gate,
         WidthGate,
-        LengthGate
+        LengthGate,
+        PlinkoX1,
+        PlinkoX2,
+        PlinkoX5
     }
 }

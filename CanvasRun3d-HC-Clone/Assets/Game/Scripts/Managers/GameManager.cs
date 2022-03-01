@@ -1,39 +1,40 @@
 using System;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 namespace Game.Scripts.Managers
 {
     public class GameManager : MonoSingleton<GameManager>
     {
-        [SerializeField] private int width, length;
-
+        [SerializeField]private int diamond, gold;
 
         private void OnEnable()
         {
-            StackManager.WidthChangedObserver += SetNewWidth;
-            StackManager.LengthChangedObserver += SetNewLength;
+            diamond = PlayerPrefs.GetInt("DiamondCount", 0);
+            gold = PlayerPrefs.GetInt("GoldCount", 0);
         }
 
-        private void OnDestroy()
+        public void IncreaseDiamond(int diamondCount)
         {
-            StackManager.WidthChangedObserver -= SetNewWidth;
-            StackManager.LengthChangedObserver -= SetNewLength;
+            diamond += diamondCount;
+            PlayerPrefs.SetInt("DiamondCount",diamond);
         }
 
-        private void SetNewWidth(int width)
+        public void IncreaseGold(int goldCount)
         {
-            this.width = width;
+            gold += goldCount;
+            PlayerPrefs.SetInt("GoldCount",gold);
         }
 
-        private void SetNewLength(int length)
+        public void StartCurrentLevel()
         {
-            this.length = length;
         }
 
-        public int GetLength()
+        public void Won()
         {
-            return length;
+        }
+
+        public void Failed()
+        {
         }
     }
 }

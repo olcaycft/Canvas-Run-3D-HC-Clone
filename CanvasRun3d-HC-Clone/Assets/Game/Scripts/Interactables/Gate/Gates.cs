@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.Scripts.Interactables.Gate
 {
-    public class Gate : InteractableBase
+    public class Gates : InteractableBase
     {
         protected override void OnTriggerEnter(Collider other)
         {
@@ -22,7 +22,8 @@ namespace Game.Scripts.Interactables.Gate
                 gameObject.SetActive(false);
             }
             
-            base.OnTriggerEnter(other);
+            //base.OnTriggerEnter(other);
+            base.DoPlayerAction();
         }
     }
 }
