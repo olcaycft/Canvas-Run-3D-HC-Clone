@@ -3,6 +3,7 @@ using System.Linq;
 using Game.Scripts.Managers;
 using UnityEngine;
 using Game.Scripts.MiniGame;
+using Game.Scripts.Patterns;
 
 namespace Game.Scripts.Unit
 {
@@ -10,7 +11,7 @@ namespace Game.Scripts.Unit
     {
         
         
-        [SerializeField] private GameObject stackObjPrefab;
+        //[SerializeField] private GameObject stackObjPrefab;
         [SerializeField] private Transform parent;
 
         private List<GameObject> StackParts = new List<GameObject>();
@@ -85,7 +86,9 @@ namespace Game.Scripts.Unit
 
         private void GrowStack()
         {
-            GameObject body = Instantiate(stackObjPrefab, parent);
+            //GameObject body = Instantiate(stackObjPrefab, parent);
+            GameObject body = ObjectPooler.Instance.SpawnFromPool("Unit",parent.position,parent.rotation);
+            body.transform.SetParent(transform);
             StackParts.Add(body);
         }
 
@@ -95,7 +98,11 @@ namespace Game.Scripts.Unit
             {
                 var unit = StackParts.Last();
                 StackParts.Remove(unit);
-                Destroy(unit.gameObject);
+                //Destroy(unit.gameObject);
+                unit.transform.SetParent(null);
+                unit.transform.position=Vector3.zero;
+                unit.SetActive(false);
+                
             }
         }
 
