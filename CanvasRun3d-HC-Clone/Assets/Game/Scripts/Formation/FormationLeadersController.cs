@@ -34,7 +34,7 @@ namespace Game.Scripts.Formation
                 Kill(spawnedUnits.Count - points.Count);
             }
 
-            for (int i = 0; i < spawnedUnits.Count; i++)
+            for (var i = 0; i < spawnedUnits.Count; i++)
             {
                 spawnedUnits[i].transform.position = transform.position + points[i];
             }
@@ -56,7 +56,7 @@ namespace Game.Scripts.Formation
 
         private void Kill(int num) //its will be replace with obj pool later
         {
-            for (int i = 0; i < num; i++)
+            for (var i = 0; i < num; i++)
             {
                 var unit = spawnedUnits.Last();
                 spawnedUnits.Remove(unit);

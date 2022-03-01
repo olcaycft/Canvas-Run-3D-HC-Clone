@@ -32,6 +32,7 @@ namespace Game.Scripts.Managers
         {
             diamond += diamondCount;
             PlayerPrefs.SetInt("DiamondCount", diamond);
+            UIManager.Instance.TotalDiamondText();
         }
 
         public void IncreaseGold(int goldCount)

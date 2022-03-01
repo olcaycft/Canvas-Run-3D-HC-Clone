@@ -12,11 +12,6 @@ public class UnitRigidBody : MonoBehaviour
 
     private Rigidbody rigidBody => _rigidbody ??= GetComponent<Rigidbody>(); // =>_rigidbody ?? (_rigidbody=GetComponent<Rigidbody>()); 
 
-    private void Awake()
-    {
-        //_rigidbody=GetComponent<Rigidbody>();
-    }
-
     private void OnEnable()
     {
          //rigidBody = _rigidbody ??= GetComponent<Rigidbody>();

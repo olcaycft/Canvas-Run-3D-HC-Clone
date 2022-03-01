@@ -1,5 +1,5 @@
-
 using System;
+using Game.Scripts.Patterns;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -10,8 +10,9 @@ namespace Game.Scripts.Managers
     /// </summary>
     public class StackManager : MonoSingleton<StackManager>
     {
-        [SerializeField] private int width = 4, length = 10;
-        [SerializeField] private int tempWidth, tempLength, newWidth, newLength;
+        private int _width => SettingsManager.GameSettings.width;
+        private int _length => SettingsManager.GameSettings.length;
+        private int width, length, tempWidth, tempLength, newWidth, newLength;
 
         public static event Action<int> WidthChangedObserver;
         public static event Action<int> LengthChangedObserver;
@@ -23,6 +24,8 @@ namespace Game.Scripts.Managers
 
         private void Awake()
         {
+            width = _width;
+            length = _length;
             
             tempWidth = width;
             tempLength = length;
@@ -53,11 +56,12 @@ namespace Game.Scripts.Managers
                 WidthChangedObserver?.Invoke(tempWidth);
             }
 
-            if (width==0 || length==0)
+            if (width == 0 || length == 0)
             {
                 GameManager.Instance.Failed();
             }
-            ChangeUnitCountTextObserver?.Invoke(tempLength,tempWidth);
+
+            ChangeUnitCountTextObserver?.Invoke(tempLength, tempWidth);
         }
 
         private void CalculateNewLength()
@@ -77,6 +81,8 @@ namespace Game.Scripts.Managers
         public void DecreaseWidth()
         {
             width -= 1;
+            CalculateNewLength();
+            CalculateNewWidth();
         }
 
         public void SetNewLength()
@@ -104,11 +110,5 @@ namespace Game.Scripts.Managers
         {
             return width;
         }
-
-        /*public void ResetWidthAndLenght()
-        {
-            width = 4;
-            length = 10;
-        }*/
     }
 }

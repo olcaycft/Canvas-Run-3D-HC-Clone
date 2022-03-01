@@ -337,12 +337,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3024128634150018507}
+  - component: {fileID: 8140323758685740460}
   - component: {fileID: 3024128634150018511}
   - component: {fileID: 3024128634150018508}
   - component: {fileID: 3024128634150018509}
   - component: {fileID: 3024128634150018513}
   - component: {fileID: 3024128634150018512}
-  - component: {fileID: 3911182252445092143}
   m_Layer: 11
   m_Name: UnitsSideMovementRoot
   m_TagString: Player
@@ -365,6 +365,19 @@ Transform:
   m_Father: {fileID: 3024128632590232261}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &8140323758685740460
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3024128634150018506}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0.58, z: 0}
 --- !u!54 &3024128634150018511
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -408,8 +421,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4774489af506ccc4ca3f4f6b71e57628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spread: 0.3
-  width: 4
 --- !u!114 &3024128634150018513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,19 +445,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e43b8fcdbadb6644a1687a6d94cafb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &3911182252445092143
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3024128634150018506}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.51, z: 0}
 --- !u!1 &3024128634187036771
 GameObject:
   m_ObjectHideFlags: 0

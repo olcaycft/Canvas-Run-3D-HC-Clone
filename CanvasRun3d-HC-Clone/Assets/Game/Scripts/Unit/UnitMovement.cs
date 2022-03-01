@@ -2,6 +2,7 @@ using System;
 using Game.Scripts.Managers;
 using UnityEngine;
 using Game.Scripts.MiniGame;
+using Game.Scripts.Patterns;
 
 namespace Game.Scripts.Unit
 {
@@ -17,18 +18,12 @@ namespace Game.Scripts.Unit
 
         [SerializeField] private float stackLeftLimitX;
 
-        //private float sideMovementSensitivity => SettingsManager.GameSettings.playerSideMovementSensitivity;
-        //private float sideMovementLerpSpeed => SettingsManager.GameSettings.playerSideMovementLerpSpeed;
-        //private float forwardSpeed => SettingsManager.GameSettings.playerForwardSpeed;
-        private float sideMovementSensitivity = 10f;
-        private float sideMovementLerpSpeed = 5f;
-        private float forwardSpeed = 10f;
-        //private float rotationSpeed = 5f;
+        private float sideMovementSensitivity => SettingsManager.GameSettings.unitSideMovementSensitivity;
+        private float sideMovementLerpSpeed => SettingsManager.GameSettings.unitSideMovementLerpSpeed;
+        private float forwardSpeed => SettingsManager.GameSettings.unitForwardSpeed;
 
         private float sideMovementTarget;
 
-        /*private bool isGameStart;
-        private bool isLevelFinish;*/
         private bool isGameStart;
         private bool isFinish;
         private bool isPlinko;
@@ -72,7 +67,6 @@ namespace Game.Scripts.Unit
             HandleInput();
             if (isImpulse) return;
             SideMovement();
-            //if (!isGameStart) return;
             if (isPlinko || !isGameStart) return;
             ForwardMovement();
         }

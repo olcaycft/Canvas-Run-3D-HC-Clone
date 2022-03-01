@@ -1,17 +1,21 @@
 using System;
 using System.Collections.Generic;
 using Game.Scripts.Managers;
+using Game.Scripts.Patterns;
 using UnityEngine;
 
 namespace Game.Scripts.Formation
 {
     public class RectangleFormation : FormationBase
     {
-        [SerializeField] private int width = 5;
+        private int _width =>SettingsManager.GameSettings.width;
+
+        private int width;
         //[SerializeField] private int length = 5;
 
         private void OnEnable()
         {
+            width = _width;
             StackManager.WidthChangedObserver += ChangeWidth;
         }
 

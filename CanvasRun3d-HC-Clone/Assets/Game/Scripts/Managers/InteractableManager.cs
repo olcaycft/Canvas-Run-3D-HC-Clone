@@ -22,6 +22,9 @@ namespace Game.Scripts.Managers
                 case InteractableType.Obstacle:
                     StackManager.Instance.DecreaseWidth();
                     break;
+                case InteractableType.Diamond:
+                    GameManager.Instance.IncreaseDiamond(1);
+                    break;
             }
 
             switch (state)
@@ -47,6 +50,7 @@ namespace Game.Scripts.Managers
         PlinkoX1,
         PlinkoX2,
         PlinkoX5,
-        Obstacle
+        Obstacle,
+        Diamond
     }
 }
