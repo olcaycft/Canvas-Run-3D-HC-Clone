@@ -12,7 +12,7 @@ namespace Game.Scripts.Unit
         
         
         //[SerializeField] private GameObject stackObjPrefab;
-        [SerializeField] private Transform parent;
+        //[SerializeField] private Transform parent;
 
         private List<GameObject> StackParts = new List<GameObject>();
 
@@ -72,7 +72,7 @@ namespace Game.Scripts.Unit
 
         private void StackMovement()
         {
-            PositionHistory.Insert(0, parent.position);
+            PositionHistory.Insert(0, transform.position);
             var index = 1;
             foreach (var stackObj in StackParts)
             {
@@ -87,7 +87,7 @@ namespace Game.Scripts.Unit
         private void GrowStack()
         {
             //GameObject body = Instantiate(stackObjPrefab, parent);
-            GameObject body = ObjectPooler.Instance.SpawnFromPool("Unit",parent.position,parent.rotation);
+            GameObject body = ObjectPooler.Instance.SpawnFromPool("Unit",transform.position,transform.rotation);
             body.transform.SetParent(transform);
             StackParts.Add(body);
         }
