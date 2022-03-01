@@ -11,16 +11,16 @@ namespace Game.Scripts.Unit
     {
         
         
-        //[SerializeField] private GameObject stackObjPrefab;
+        [SerializeField] private GameObject stackObjPrefab;
         //[SerializeField] private Transform parent;
 
-        private List<GameObject> StackParts = new List<GameObject>();
+        [SerializeField]private List<GameObject> StackParts = new List<GameObject>();
 
         private List<Vector3> PositionHistory = new List<Vector3>();
 
         //private int gap =>Mathf.RoundToInt(parent.GetComponent<Renderer>().bounds.size.z)+1;
         private int gap = 5;
-        private int length;
+        [SerializeField]private int length;
 
         private bool isFinish;
         private bool isPlinko;
@@ -86,8 +86,8 @@ namespace Game.Scripts.Unit
 
         private void GrowStack()
         {
-            //GameObject body = Instantiate(stackObjPrefab, parent);
-            GameObject body = ObjectPooler.Instance.SpawnFromPool("Unit",transform.position,transform.rotation);
+            GameObject body = Instantiate(stackObjPrefab, transform);
+            //var body = ObjectPooler.Instance.SpawnFromPool("Unit",transform.position,transform.rotation);
             body.transform.SetParent(transform);
             StackParts.Add(body);
         }

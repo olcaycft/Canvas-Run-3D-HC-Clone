@@ -8,6 +8,13 @@ namespace Game.Scripts.Managers
     {
         [SerializeField] private int diamond, gold, interactedBallCount, totalBallCount;
 
+        public static event Action GameFinishedObserver;
+
+        private void Awake()
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+
         private void OnEnable()
         {
             diamond = PlayerPrefs.GetInt("DiamondCount", 0);
@@ -31,6 +38,7 @@ namespace Game.Scripts.Managers
         {
             gold += goldCount;
             PlayerPrefs.SetInt("GoldCount", gold);
+            UIManager.Instance.TotalGoldText();
             interactedBallCount++;
             if (interactedBallCount == totalBallCount)
             {
@@ -41,17 +49,21 @@ namespace Game.Scripts.Managers
         public void StartCurrentLevel()
         {
             interactedBallCount = 0;
+            UIManager.Instance.StartGame();
         }
 
         public void Won()
         {
-            Debug.Log("Won");
-            StackManager.Instance.ResetWidthAndLenght();
+            //StackManager.Instance.ResetWidthAndLenght();
+            UIManager.Instance.Win();
+            GameFinishedObserver?.Invoke();
         }
 
         public void Failed()
         {
-            StackManager.Instance.ResetWidthAndLenght();
+            //StackManager.Instance.ResetWidthAndLenght();
+            UIManager.Instance.Fail();
+            GameFinishedObserver?.Invoke();
         }
 
         private void GetTotalBallCount()

@@ -1,45 +1,69 @@
 using System;
+using System.Security.Cryptography;
+using Game.Scripts.Managers;
 using Game.Scripts.MiniGame;
+using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class UnitRigidBody : MonoBehaviour
 {
     private Rigidbody _rigidbody;
-    private Rigidbody rigidBody =>_rigidbody ??= GetComponent<Rigidbody>();
-    
-    
+
+    private Rigidbody rigidBody => _rigidbody ??= GetComponent<Rigidbody>(); // =>_rigidbody ?? (_rigidbody=GetComponent<Rigidbody>()); 
+
+    private void Awake()
+    {
+        //_rigidbody=GetComponent<Rigidbody>();
+    }
+
     private void OnEnable()
     {
-        //Finish.FinishGameObserver += SetRigidBodyAndImpulse;
-        PlinkoMiniGame.ChangeUnitRigidBodyObserver += ChangeRigidBody;
+         //rigidBody = _rigidbody ??= GetComponent<Rigidbody>();
+        PlinkoMiniGame.ChangeUnitRigidBodyObserver += ChangeRigidBodyAsActive;
         MiniGameController.ImpulseMiniGameStartObserver += AddImpulseForce;
     }
 
     private void OnDestroy()
     {
-        //Finish.FinishGameObserver -= SetRigidBodyAndImpulse;
-        PlinkoMiniGame.ChangeUnitRigidBodyObserver -= ChangeRigidBody;
+        PlinkoMiniGame.ChangeUnitRigidBodyObserver -= ChangeRigidBodyAsActive;
         MiniGameController.ImpulseMiniGameStartObserver -= AddImpulseForce;
     }
 
 
-    private void ChangeRigidBody()
+    private void ChangeRigidBodyAsActive()
     {
-        /*var rot = transform.rotation;
-        rot.y = Random.Range(0, 180);
-        transform.rotation = rot;*/
         rigidBody.isKinematic = false;
         rigidBody.useGravity = true;
         rigidBody.angularDrag = 0.01f;
+        /*if (GetComponent<Rigidbody>() == null)
+        {
+            var rigidBody = GetComponent<Rigidbody>();
+            rigidBody.drag = 0.05F;
+            rigidBody.angularDrag = 0f;
+            rigidBody.isKinematic = false;
+            rigidBody.useGravity = true;
+            rigidBody.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
+        }
+        else
+        {
+            var rigidBody = _rigidbody;
+            rigidBody.drag = 0.05F;
+            rigidBody.angularDrag = 0f;
+            rigidBody.isKinematic = false;
+            rigidBody.useGravity = true;
+            rigidBody.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
+        }*/
+        
     }
+
 
     private void AddImpulseForce()
     {
-        ChangeRigidBody();
-        transform.rotation = Quaternion.Euler(Random.Range(-90, 90), Random.Range(0, -90),0f);
+        ChangeRigidBodyAsActive();
+        transform.rotation = Quaternion.Euler(Random.Range(-90, 90), Random.Range(0, -90), 0f);
         //transform.eulerAngles = new Vector3(Random.Range(-90, 90), Random.Range(0, -90));
-        rigidBody.AddForce (Vector3.forward*Random.Range(5,10),ForceMode.Impulse);
+        //rigidBody.AddForce(Vector3.forward * Random.Range(5, 10), ForceMode.Impulse);
     }
 
     private void OnTriggerEnter(Collider other)

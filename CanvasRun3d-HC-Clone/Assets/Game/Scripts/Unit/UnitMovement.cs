@@ -23,7 +23,7 @@ namespace Game.Scripts.Unit
         private float sideMovementSensitivity = 10f;
         private float sideMovementLerpSpeed = 5f;
         private float forwardSpeed = 10f;
-        private float rotationSpeed = 5f;
+        //private float rotationSpeed = 5f;
 
         private float sideMovementTarget;
 

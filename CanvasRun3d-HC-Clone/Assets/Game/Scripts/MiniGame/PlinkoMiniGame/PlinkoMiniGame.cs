@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Game.Scripts.Patterns;
 using UnityEngine;
 
 namespace Game.Scripts.MiniGame
@@ -50,6 +51,7 @@ namespace Game.Scripts.MiniGame
         {
             changePos = false;
             ChangeUnitRigidBodyObserver?.Invoke();
+            //ObjectPooler.Instance.SetRb("Unit");
         }
     }
 }

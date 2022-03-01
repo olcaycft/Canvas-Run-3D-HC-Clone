@@ -38,21 +38,44 @@ namespace Game.Scripts.Patterns
                 return null;
             }
 
-            GameObject objToSpawn = poolDictionary[tag].Dequeue();
+            var objToSpawn = poolDictionary[tag].Dequeue();
 
             objToSpawn.SetActive(true);
             objToSpawn.transform.position = position;
             objToSpawn.transform.rotation = rotation;
 
-           /* IOnUnitSpawn pooledObj = objToSpawn.GetComponent<IOnUnitSpawn>();
+            IOnUnitSpawn pooledObj = objToSpawn.GetComponent<IOnUnitSpawn>();
             if (pooledObj != null)
             {
                 pooledObj.OnUnitSpawn();
-            }*/
+            }
 
             poolDictionary[tag].Enqueue(objToSpawn);
             return objToSpawn;
         }
+
+        /*public void SetRb(string tag)
+        {
+            foreach (var pool in pools)
+            {
+                if (pool.tag.Equals(tag))
+                {
+                    for (int i = 0; i < pool.size; i++)
+                    {
+                        var obj = poolDictionary[tag].Dequeue();
+                        Rigidbody objRb = obj.AddComponent<Rigidbody>();
+                        objRb.drag = 0.05F;
+                        objRb.angularDrag = 0f;
+                        objRb.isKinematic = false;
+                        objRb.useGravity = true;
+                        objRb.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
+                        poolDictionary[tag].Enqueue(obj);
+                    }
+                }
+                
+            }
+            
+        }*/
     }
 
     #region PoolClass

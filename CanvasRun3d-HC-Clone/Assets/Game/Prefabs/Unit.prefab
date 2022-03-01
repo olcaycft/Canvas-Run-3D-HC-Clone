@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8365225642535595843}
   - component: {fileID: 8365225642535595842}
   - component: {fileID: 8365225642535595841}
-  - component: {fileID: 4397089192433627418}
-  - component: {fileID: 2464671579053243014}
+  - component: {fileID: -6236579179240460491}
+  - component: {fileID: 54203296558586894}
   m_Layer: 10
   m_Name: Unit
   m_TagString: Unit
@@ -97,7 +97,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &4397089192433627418
+--- !u!54 &-6236579179240460491
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,15 +105,15 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8365225642535595840}
   serializedVersion: 2
-  m_Mass: 0.6
-  m_Drag: 0
+  m_Mass: 1
+  m_Drag: 0.05
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 64
   m_CollisionDetection: 3
---- !u!114 &2464671579053243014
+--- !u!114 &54203296558586894
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,3 +125,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b33e5c041f18084ea3d543ad9918eb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefab: {fileID: 0}

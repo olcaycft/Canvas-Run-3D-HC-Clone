@@ -5,6 +5,10 @@ namespace Game.Scripts.Managers
 {
     public class InteractableManager : MonoSingleton<InteractableManager>
     {
+        private void Awake()
+        {
+            DontDestroyOnLoad(gameObject);
+        }
         public void SetInteractable(InteractableType state)
         {
             switch (state)

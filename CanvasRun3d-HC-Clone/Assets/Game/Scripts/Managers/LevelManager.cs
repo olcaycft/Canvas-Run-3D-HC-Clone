@@ -12,7 +12,7 @@ namespace Game.Scripts.Managers
 
         private void Awake()
         {
-            //DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
             
             LoadLevel(1); //loading scene
             Invoke(nameof(LoadFirstScene), 3f);

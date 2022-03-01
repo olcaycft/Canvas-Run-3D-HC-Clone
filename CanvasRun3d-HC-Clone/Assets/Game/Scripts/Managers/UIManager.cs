@@ -10,10 +10,17 @@ namespace Game.Scripts.Managers
         [SerializeField] private GameObject inGameUI;
         [SerializeField] private GameObject failUI;
         [SerializeField] private GameObject winUI;
+
+        [SerializeField] private GameObject levelProgress;
         [SerializeField] private TextMeshProUGUI totalDiamondTxt;
         [SerializeField] private TextMeshProUGUI totalGoldTxt;
-        [SerializeField] private TextMeshProUGUI currentLevelTxt;
-        [SerializeField] private TextMeshProUGUI nextLevelTxt;
+        [SerializeField] private TextMeshProUGUI currentLevelInGameTxt;
+        [SerializeField] private TextMeshProUGUI nextLevelInGameTxt;
+        
+        [SerializeField] private TextMeshProUGUI currentLevelFailTxt;
+        [SerializeField] private TextMeshProUGUI currentLevelWonTxt;
+
+        private bool isFail, isWon;
 
         //private int inGameDiamond;
         private void Awake()
@@ -22,25 +29,32 @@ namespace Game.Scripts.Managers
             inGameUI.SetActive(true);
             TotalDiamondText();
             TotalGoldText();
-            TextCurrentLevel();
+            TextInGameLevel();
         }
 
 
         public void StartGame()
         {
             startUI.SetActive(false);
+            TextInGameLevel();
         }
 
         public void Fail()
         {
             inGameUI.SetActive(false);
+            levelProgress.SetActive(false);
             failUI.SetActive(true);
+            isFail = true;
+            TextCurrentLevel();
         }
 
         public void Win()
         {
             inGameUI.SetActive(false);
+            levelProgress.SetActive(false);
             winUI.SetActive(true);
+            isWon = true;
+            TextCurrentLevel();
         }
 
         public void TotalDiamondText()
@@ -48,15 +62,29 @@ namespace Game.Scripts.Managers
             totalDiamondTxt.text = PlayerPrefs.GetInt("DiamondCount", 0).ToString();
         }
 
-        private void TotalGoldText()
+        public void TotalGoldText()
         {
             totalGoldTxt.text=PlayerPrefs.GetInt("GoldCount", 0).ToString();
         }
 
+        private void TextInGameLevel()
+        {
+            levelProgress.SetActive(true);
+            currentLevelInGameTxt.text = $"{PlayerPrefs.GetInt("Level",1)}";
+            nextLevelInGameTxt.text = $"{PlayerPrefs.GetInt("Level",1)+1}";
+        }
+
         private void TextCurrentLevel()
         {
-            currentLevelTxt.text = $"{PlayerPrefs.GetInt("Level",1)}";
-            nextLevelTxt.text = $"{PlayerPrefs.GetInt("Level",1)+1}";
+            if (isFail)
+            {
+                currentLevelFailTxt.text = PlayerPrefs.GetInt("Level",1).ToString();
+            }
+            else if(isWon)
+            {
+                currentLevelWonTxt.text = PlayerPrefs.GetInt("Level",1).ToString();
+            }
+            
         }
     }
 }

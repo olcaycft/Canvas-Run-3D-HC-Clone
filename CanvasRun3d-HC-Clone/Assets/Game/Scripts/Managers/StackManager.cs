@@ -23,6 +23,7 @@ namespace Game.Scripts.Managers
 
         private void Awake()
         {
+            
             tempWidth = width;
             tempLength = length;
 
@@ -94,10 +95,10 @@ namespace Game.Scripts.Managers
             return width;
         }
 
-        public void ResetWidthAndLenght()
+        /*public void ResetWidthAndLenght()
         {
             width = 4;
             length = 10;
-        }
+        }*/
     }
 }
