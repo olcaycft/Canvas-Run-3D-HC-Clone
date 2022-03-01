@@ -29,18 +29,18 @@ namespace Game.Scripts.Unit
         private void OnEnable()
         {
             StackManager.LengthChangedObserver += ChangeLength;
-            MiniGameController.FinishGameObserver += ChangeFinishState;
-            MiniGameController.PlinkoMiniGameStartObserver += ChangePlinkoState;
-            MiniGameController.ImpulseMiniGameStartObserver += ChangeImpulseState;
+            GameStateController.FinishGameObserver += ChangeFinishState;
+            GameStateController.PlinkoMiniGameStartObserver += ChangePlinkoState;
+            GameStateController.ImpulseMiniGameStartObserver += ChangeImpulseState;
             
         }
 
         private void OnDestroy()
         {
             StackManager.LengthChangedObserver -= ChangeLength;
-            MiniGameController.FinishGameObserver -= ChangeFinishState;
-            MiniGameController.PlinkoMiniGameStartObserver -= ChangePlinkoState;
-            MiniGameController.ImpulseMiniGameStartObserver -= ChangeImpulseState;
+            GameStateController.FinishGameObserver -= ChangeFinishState;
+            GameStateController.PlinkoMiniGameStartObserver -= ChangePlinkoState;
+            GameStateController.ImpulseMiniGameStartObserver -= ChangeImpulseState;
         }
 
         private void Update()

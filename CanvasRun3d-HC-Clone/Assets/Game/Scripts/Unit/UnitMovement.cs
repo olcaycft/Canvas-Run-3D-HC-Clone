@@ -41,17 +41,17 @@ namespace Game.Scripts.Unit
             stackLeftLimitX = stackLeftLimit.localPosition.x;
             tempWidth = StackManager.Instance.GetWidth();
             StackManager.WidthChangedObserver += SetLeftRightLimits;
-            MiniGameController.FinishGameObserver += ChangeFinishState;
-            MiniGameController.PlinkoMiniGameStartObserver += ChangePlinkoState;
-            MiniGameController.ImpulseMiniGameStartObserver += ChangeImpulseState;
+            GameStateController.FinishGameObserver += ChangeFinishState;
+            GameStateController.PlinkoMiniGameStartObserver += ChangePlinkoState;
+            GameStateController.ImpulseMiniGameStartObserver += ChangeImpulseState;
         }
 
         private void OnDestroy()
         {
             StackManager.WidthChangedObserver -= SetLeftRightLimits;
-            MiniGameController.FinishGameObserver -= ChangeFinishState;
-            MiniGameController.PlinkoMiniGameStartObserver -= ChangePlinkoState;
-            MiniGameController.ImpulseMiniGameStartObserver -= ChangeImpulseState;
+            GameStateController.FinishGameObserver -= ChangeFinishState;
+            GameStateController.PlinkoMiniGameStartObserver -= ChangePlinkoState;
+            GameStateController.ImpulseMiniGameStartObserver -= ChangeImpulseState;
         }
 
         private Vector2 mousePositionCM

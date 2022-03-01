@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Scripts.MiniGame
 {
-    public class MiniGameController : MonoBehaviour
+    public class GameStateController : MonoBehaviour
     {
         public static event Action PlinkoMiniGameStartObserver;
         public static event Action ImpulseMiniGameStartObserver;

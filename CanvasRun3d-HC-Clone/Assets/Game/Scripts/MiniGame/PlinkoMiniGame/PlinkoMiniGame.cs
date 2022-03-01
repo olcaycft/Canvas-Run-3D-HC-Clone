@@ -14,12 +14,12 @@ namespace Game.Scripts.MiniGame
         public static event Action ChangeUnitRigidBodyObserver;
         private void OnEnable()
         {
-            MiniGameController.PlinkoMiniGameStartObserver += PlinkoGame;
+            GameStateController.PlinkoMiniGameStartObserver += PlinkoGame;
         }
 
         private void OnDestroy()
         {
-            MiniGameController.PlinkoMiniGameStartObserver -= PlinkoGame;
+            GameStateController.PlinkoMiniGameStartObserver -= PlinkoGame;
         }
 
         private void Update()

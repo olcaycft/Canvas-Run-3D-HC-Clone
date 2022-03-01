@@ -52,6 +52,11 @@ namespace Game.Scripts.Managers
                 tempWidth = width;
                 WidthChangedObserver?.Invoke(tempWidth);
             }
+
+            if (width==0 || length==0)
+            {
+                GameManager.Instance.Failed();
+            }
             ChangeUnitCountTextObserver?.Invoke(tempLength,tempWidth);
         }
 
@@ -67,6 +72,11 @@ namespace Game.Scripts.Managers
             var randomWidthInterval = Random.Range(1, width);
             newWidth = Random.value < 0.25f ? -randomWidthInterval : randomWidthInterval;
             ChangeWidthTextObserver?.Invoke(length, newWidth);
+        }
+
+        public void DecreaseWidth()
+        {
+            width -= 1;
         }
 
         public void SetNewLength()

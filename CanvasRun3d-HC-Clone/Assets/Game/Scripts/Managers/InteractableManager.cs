@@ -19,6 +19,9 @@ namespace Game.Scripts.Managers
                 case InteractableType.WidthGate:
                     StackManager.Instance.SetNewWidth();
                     break;
+                case InteractableType.Obstacle:
+                    StackManager.Instance.DecreaseWidth();
+                    break;
             }
 
             switch (state)
@@ -43,6 +46,7 @@ namespace Game.Scripts.Managers
         LengthGate,
         PlinkoX1,
         PlinkoX2,
-        PlinkoX5
+        PlinkoX5,
+        Obstacle
     }
 }

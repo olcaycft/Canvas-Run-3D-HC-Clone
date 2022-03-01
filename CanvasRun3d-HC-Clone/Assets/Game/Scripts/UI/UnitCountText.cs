@@ -13,18 +13,18 @@ namespace Game.Scripts.UI
         {
             StackManager.ChangeUnitCountTextObserver += ChangeUnitText;
 
-            MiniGameController.PlinkoMiniGameStartObserver += DisableText;
-            MiniGameController.ImpulseMiniGameStartObserver += DisableText;
-            MiniGameController.FinishGameObserver += DisableText;
+            GameStateController.PlinkoMiniGameStartObserver += DisableText;
+            GameStateController.ImpulseMiniGameStartObserver += DisableText;
+            GameStateController.FinishGameObserver += DisableText;
         }
 
         private void OnDestroy()
         {
             StackManager.ChangeUnitCountTextObserver -= ChangeUnitText;
             
-            MiniGameController.PlinkoMiniGameStartObserver -= DisableText;
-            MiniGameController.ImpulseMiniGameStartObserver -= DisableText;
-            MiniGameController.FinishGameObserver -= DisableText;
+            GameStateController.PlinkoMiniGameStartObserver -= DisableText;
+            GameStateController.ImpulseMiniGameStartObserver -= DisableText;
+            GameStateController.FinishGameObserver -= DisableText;
         }
 
 

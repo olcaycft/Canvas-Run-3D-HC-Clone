@@ -17,13 +17,13 @@ namespace Game.Scripts.Managers
         private void OnEnable()
         {
             Gates.PlayerAtGate += EnableGateCam;
-            MiniGameController.PlinkoMiniGameStartObserver += EnablePlinkoCam;
+            GameStateController.PlinkoMiniGameStartObserver += EnablePlinkoCam;
         }
 
         private void OnDestroy()
         {
             Gates.PlayerAtGate -= EnableGateCam;
-            MiniGameController.PlinkoMiniGameStartObserver -= EnablePlinkoCam;
+            GameStateController.PlinkoMiniGameStartObserver -= EnablePlinkoCam;
         }
 
         private void EnableGateCam()
