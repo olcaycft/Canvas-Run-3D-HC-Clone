@@ -31,6 +31,8 @@ namespace Game.Scripts.Unit
         private bool isLevelFinish;*/
 
         private bool isFinish;
+        private bool isPlinko;
+        private bool isImpulse;
 
         private int tempWidth;
 
@@ -40,15 +42,18 @@ namespace Game.Scripts.Unit
             stackLeftLimitX = stackLeftLimit.localPosition.x;
             tempWidth = StackManager.Instance.GetWidth();
             StackManager.WidthChangedObserver += SetLeftRightLimits;
-            Finish.FinishGameObserver += ChangeFinishState;
+            MiniGameController.FinishGameObserver += ChangeFinishState;
+            MiniGameController.PlinkoMiniGameObserver += ChangePlinkoState;
+            MiniGameController.ImpulseMiniGameObserver += ChangeImpulseState;
 
         }
 
         private void OnDestroy()
         {
             StackManager.WidthChangedObserver -= SetLeftRightLimits;
-            //Finish.FinishGameObserver -= ChangeFinishState;
-            Finish.FinishGameObserver += ChangeFinishState;
+            MiniGameController.FinishGameObserver -= ChangeFinishState;
+            MiniGameController.PlinkoMiniGameObserver -= ChangePlinkoState;
+            MiniGameController.ImpulseMiniGameObserver -= ChangeImpulseState;
         }
 
         private Vector2 mousePositionCM
@@ -65,18 +70,18 @@ namespace Game.Scripts.Unit
 
         private void Update()
         {
-            if (isFinish)
-            {
-                return;
-            }
+            if (isFinish) return;
             HandleInput();
+            if (isImpulse) return;
             SideMovement();
             /*if (!isGameStart)
             {
                 return;
             }*/
-
+            if (isPlinko) return;
             ForwardMovement();
+            
+            
         }
 
         private void HandleInput()
@@ -125,11 +130,6 @@ namespace Game.Scripts.Unit
             transform.position += Vector3.forward * Time.deltaTime * forwardSpeed;
         }
 
-         private void ChangeFinishState()
-         {
-             isFinish = true;
-         }
-
         private void SetLeftRightLimits(int width)
         {
             var half = width / 2;
@@ -147,6 +147,21 @@ namespace Game.Scripts.Unit
             }
             
             
+        }
+        
+        private void ChangeFinishState()
+        {
+            isFinish = true;
+        }
+
+        private void ChangePlinkoState()
+        {
+            isPlinko = true;
+        }
+
+        private void ChangeImpulseState()
+        {
+            isImpulse = true;
         }
     }
 }

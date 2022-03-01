@@ -22,23 +22,29 @@ namespace Game.Scripts.Unit
         private int length;
 
         private bool isFinish;
+        private bool isPlinko;
+        private bool isImpulse;
 
         private void OnEnable()
         {
             StackManager.LengthChangedObserver += ChangeLength;
-            Finish.FinishGameObserver += ChangeFinishState;
+            MiniGameController.FinishGameObserver += ChangeFinishState;
+            MiniGameController.PlinkoMiniGameObserver += ChangePlinkoState;
+            MiniGameController.ImpulseMiniGameObserver += ChangeImpulseState;
             
         }
 
         private void OnDestroy()
         {
             StackManager.LengthChangedObserver -= ChangeLength;
-            Finish.FinishGameObserver -= ChangeFinishState;
+            MiniGameController.FinishGameObserver -= ChangeFinishState;
+            MiniGameController.PlinkoMiniGameObserver -= ChangePlinkoState;
+            MiniGameController.ImpulseMiniGameObserver -= ChangeImpulseState;
         }
 
         private void Update()
         {
-            if (isFinish) return;
+            if (isFinish || isPlinko || isImpulse) return;
             StackCount();
             StackMovement();
         }
@@ -101,6 +107,16 @@ namespace Game.Scripts.Unit
         private void ChangeFinishState()
         {
             isFinish = true;
+        }
+
+        private void ChangePlinkoState()
+        {
+            isPlinko = true;
+        }
+
+        private void ChangeImpulseState()
+        {
+            isImpulse = true;
         }
     }
 }

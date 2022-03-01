@@ -13,12 +13,14 @@ public class UnitRigidBody : MonoBehaviour
     {
         //Finish.FinishGameObserver += SetRigidBodyAndImpulse;
         PlinkoMiniGame.ChangeUnitRigidBodyObserver += ChangeRigidBody;
+        MiniGameController.ImpulseMiniGameObserver += AddImpulseForce;
     }
 
     private void OnDestroy()
     {
         //Finish.FinishGameObserver -= SetRigidBodyAndImpulse;
         PlinkoMiniGame.ChangeUnitRigidBodyObserver -= ChangeRigidBody;
+        MiniGameController.ImpulseMiniGameObserver -= AddImpulseForce;
     }
 
 
@@ -30,12 +32,19 @@ public class UnitRigidBody : MonoBehaviour
         rigidBody.isKinematic = false;
         rigidBody.useGravity = true;
         rigidBody.angularDrag = 0.05f;
-        //rigidBody.AddRelativeForce(Vector3.forward*Random.Range(20,30),ForceMode.Impulse);
-        //rigidBody.AddRelativeTorque(Vector3.forward,ForceMode.VelocityChange);
     }
 
     private void AddImpulseForce()
     {
+        ChangeRigidBody();
         rigidBody.AddForce (Vector3.forward*Random.Range(10,30),ForceMode.Impulse);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("ChangeUnitParent"))
+        {
+            transform.SetParent(null);
+        }
     }
 }
