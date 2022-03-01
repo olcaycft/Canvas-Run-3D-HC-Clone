@@ -6,10 +6,12 @@ namespace Game.Scripts.Interactables.Gate
 {
     public class Gates : InteractableBase
     {
+        public static event Action PlayerAtGate;
         protected override void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag("Player"))
             {
+                PlayerAtGate?.Invoke();
                 switch (baseInteractableType)
                 {
                     case InteractableType.Gate:

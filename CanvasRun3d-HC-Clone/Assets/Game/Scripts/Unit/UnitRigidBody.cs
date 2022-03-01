@@ -13,14 +13,14 @@ public class UnitRigidBody : MonoBehaviour
     {
         //Finish.FinishGameObserver += SetRigidBodyAndImpulse;
         PlinkoMiniGame.ChangeUnitRigidBodyObserver += ChangeRigidBody;
-        MiniGameController.ImpulseMiniGameObserver += AddImpulseForce;
+        MiniGameController.ImpulseMiniGameStartObserver += AddImpulseForce;
     }
 
     private void OnDestroy()
     {
         //Finish.FinishGameObserver -= SetRigidBodyAndImpulse;
         PlinkoMiniGame.ChangeUnitRigidBodyObserver -= ChangeRigidBody;
-        MiniGameController.ImpulseMiniGameObserver -= AddImpulseForce;
+        MiniGameController.ImpulseMiniGameStartObserver -= AddImpulseForce;
     }
 
 

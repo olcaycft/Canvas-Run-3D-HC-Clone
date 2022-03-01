@@ -30,8 +30,8 @@ namespace Game.Scripts.Unit
         {
             StackManager.LengthChangedObserver += ChangeLength;
             MiniGameController.FinishGameObserver += ChangeFinishState;
-            MiniGameController.PlinkoMiniGameObserver += ChangePlinkoState;
-            MiniGameController.ImpulseMiniGameObserver += ChangeImpulseState;
+            MiniGameController.PlinkoMiniGameStartObserver += ChangePlinkoState;
+            MiniGameController.ImpulseMiniGameStartObserver += ChangeImpulseState;
             
         }
 
@@ -39,8 +39,8 @@ namespace Game.Scripts.Unit
         {
             StackManager.LengthChangedObserver -= ChangeLength;
             MiniGameController.FinishGameObserver -= ChangeFinishState;
-            MiniGameController.PlinkoMiniGameObserver -= ChangePlinkoState;
-            MiniGameController.ImpulseMiniGameObserver -= ChangeImpulseState;
+            MiniGameController.PlinkoMiniGameStartObserver -= ChangePlinkoState;
+            MiniGameController.ImpulseMiniGameStartObserver -= ChangeImpulseState;
         }
 
         private void Update()

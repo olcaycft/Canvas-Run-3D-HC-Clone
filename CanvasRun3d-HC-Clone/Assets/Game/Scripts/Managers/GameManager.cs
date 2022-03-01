@@ -13,7 +13,12 @@ namespace Game.Scripts.Managers
             diamond = PlayerPrefs.GetInt("DiamondCount", 0);
             gold = PlayerPrefs.GetInt("GoldCount", 0);
             
-            MiniGameController.PlinkoMiniGameObserver += GetTotalBallCount;
+            MiniGameController.PlinkoMiniGameStartObserver += GetTotalBallCount;
+        }
+
+        private void OnDestroy()
+        {
+            MiniGameController.PlinkoMiniGameStartObserver -= GetTotalBallCount;
         }
 
         public void IncreaseDiamond(int diamondCount)

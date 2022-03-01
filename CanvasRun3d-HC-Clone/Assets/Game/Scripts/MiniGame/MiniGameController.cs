@@ -5,19 +5,19 @@ namespace Game.Scripts.MiniGame
 {
     public class MiniGameController : MonoBehaviour
     {
-        public static event Action PlinkoMiniGameObserver;
-        public static event Action ImpulseMiniGameObserver;
+        public static event Action PlinkoMiniGameStartObserver;
+        public static event Action ImpulseMiniGameStartObserver;
         public static event Action FinishGameObserver;
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag("PlinkoMiniGame"))
             {
-                PlinkoMiniGameObserver?.Invoke();
+                PlinkoMiniGameStartObserver?.Invoke();
             }
             else if (other.gameObject.CompareTag("ImpulseMiniGame"))
             {
-                ImpulseMiniGameObserver?.Invoke();
+                ImpulseMiniGameStartObserver?.Invoke();
             }
             else if (other.gameObject.CompareTag("Finish"))
             {

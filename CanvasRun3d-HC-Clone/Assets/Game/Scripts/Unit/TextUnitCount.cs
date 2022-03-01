@@ -14,8 +14,8 @@ namespace Game.Scripts.Unit
         {
             StackManager.ChangeUnitCountTextObserver += ChangeUnitText;
 
-            MiniGameController.PlinkoMiniGameObserver += DisableText;
-            MiniGameController.ImpulseMiniGameObserver += DisableText;
+            MiniGameController.PlinkoMiniGameStartObserver += DisableText;
+            MiniGameController.ImpulseMiniGameStartObserver += DisableText;
             MiniGameController.FinishGameObserver += DisableText;
         }
 
@@ -23,8 +23,8 @@ namespace Game.Scripts.Unit
         {
             StackManager.ChangeUnitCountTextObserver -= ChangeUnitText;
             
-            MiniGameController.PlinkoMiniGameObserver -= DisableText;
-            MiniGameController.ImpulseMiniGameObserver -= DisableText;
+            MiniGameController.PlinkoMiniGameStartObserver -= DisableText;
+            MiniGameController.ImpulseMiniGameStartObserver -= DisableText;
             MiniGameController.FinishGameObserver -= DisableText;
         }
 
