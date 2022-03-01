@@ -36,7 +36,7 @@ namespace Game.Scripts.Managers
 
         private IEnumerator AfterGateRoutine()
         {
-            yield return new WaitForSeconds(1f);
+            yield return Extentions.GetWait(1f);
             gameRunCam.enabled = true;
             gateRunCam.enabled = false;
         }

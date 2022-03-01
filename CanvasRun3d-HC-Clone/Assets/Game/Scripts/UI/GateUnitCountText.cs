@@ -2,9 +2,9 @@ using Game.Scripts.Managers;
 using TMPro;
 using UnityEngine;
 
-namespace Game.Scripts.Interactables.Gate
+namespace Game.Scripts.UI
 {
-    public class GateUnitCountChanges : MonoBehaviour
+    public class GateUnitCountText : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI lengthGateCount;
         [SerializeField] private TextMeshProUGUI widthGateCount;

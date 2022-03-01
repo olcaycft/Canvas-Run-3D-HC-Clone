@@ -46,10 +46,12 @@ namespace Game.Scripts.Managers
         public void Won()
         {
             Debug.Log("Won");
+            StackManager.Instance.ResetWidthAndLenght();
         }
 
         public void Failed()
         {
+            StackManager.Instance.ResetWidthAndLenght();
         }
 
         private void GetTotalBallCount()

@@ -1,12 +1,11 @@
-using System;
 using Game.Scripts.Managers;
 using Game.Scripts.MiniGame;
 using TMPro;
 using UnityEngine;
 
-namespace Game.Scripts.Unit
+namespace Game.Scripts.UI
 {
-    public class TextUnitCount : MonoBehaviour
+    public class UnitCountText : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI unitText;
 

@@ -93,5 +93,11 @@ namespace Game.Scripts.Managers
         {
             return width;
         }
+
+        public void ResetWidthAndLenght()
+        {
+            width = 4;
+            length = 10;
+        }
     }
 }
