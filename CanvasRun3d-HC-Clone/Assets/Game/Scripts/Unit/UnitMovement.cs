@@ -15,7 +15,7 @@ namespace Game.Scripts.Unit
         [SerializeField] private Transform stackLeftLimit;
         private float stackRightLimitX;
 
-        [SerializeField]private float stackLeftLimitX;
+        [SerializeField] private float stackLeftLimitX;
 
         //private float sideMovementSensitivity => SettingsManager.GameSettings.playerSideMovementSensitivity;
         //private float sideMovementLerpSpeed => SettingsManager.GameSettings.playerSideMovementLerpSpeed;
@@ -29,11 +29,10 @@ namespace Game.Scripts.Unit
 
         /*private bool isGameStart;
         private bool isLevelFinish;*/
-
+        private bool isGameStart;
         private bool isFinish;
         private bool isPlinko;
         private bool isImpulse;
-
         private int tempWidth;
 
         private void OnEnable()
@@ -45,7 +44,6 @@ namespace Game.Scripts.Unit
             MiniGameController.FinishGameObserver += ChangeFinishState;
             MiniGameController.PlinkoMiniGameObserver += ChangePlinkoState;
             MiniGameController.ImpulseMiniGameObserver += ChangeImpulseState;
-
         }
 
         private void OnDestroy()
@@ -74,14 +72,9 @@ namespace Game.Scripts.Unit
             HandleInput();
             if (isImpulse) return;
             SideMovement();
-            /*if (!isGameStart)
-            {
-                return;
-            }*/
-            if (isPlinko) return;
+            //if (!isGameStart) return;
+            if (isPlinko || !isGameStart) return;
             ForwardMovement();
-            
-            
         }
 
         private void HandleInput()
@@ -97,9 +90,9 @@ namespace Game.Scripts.Unit
                 inputDrag = deltaMouse;
                 previousMousePosition = mousePositionCM;
 
-                /*if (isGameStart || (inputDrag.x == 0 && inputDrag.y == 0)) return;
+                if (isGameStart || (inputDrag.x == 0 && inputDrag.y == 0)) return;
                 isGameStart = true;
-                GameManager.Instance.StartThisLevel();*/
+                GameManager.Instance.StartCurrentLevel();
             }
             else
             {
@@ -145,10 +138,8 @@ namespace Game.Scripts.Unit
                 stackLeftLimitX -= half * 0.1f;
                 stackRightLimitX += half * 0.1f;
             }
-            
-            
         }
-        
+
         private void ChangeFinishState()
         {
             isFinish = true;
